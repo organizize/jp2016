@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/domas/Desktop/mokslai/java/PhonesUzduotisAdapteriui/ITAPhones.jar"/>
+	<classpathentry kind="lib" path="/home/domas/Desktop/mokslai/java/social network/exam-socialnetwork.jar"/>
+	<classpathentry kind="lib" path="/home/domas/Desktop/mokslai/java/social network/exam-socialnetwork-tests.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
