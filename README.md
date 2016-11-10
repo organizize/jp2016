@@ -6,3 +6,4 @@
   * Iterator
   * Decorator
 2. Social Network
+3. Voting System
