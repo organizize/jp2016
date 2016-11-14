@@ -3,6 +3,7 @@ package jp2016.voting;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -57,31 +58,28 @@ public class VotingSystem {
             }
         }
     }
-    
-    private void acceptVote(Vote vote) {
-        votes.add(vote);
-    }
-    
+
     public List<Candidate> getCandidateList() {
-        return candidates;
+        return Collections.unmodifiableList(candidates);
     }
 
     public void printResults() {
-        try (PrintWriter out = new PrintWriter(System.out)) {
+        printResults(new PrintWriter(System.out, true));
+    }
+
+    public void printResults(String filename) throws FileNotFoundException {
+        try (PrintWriter out = new PrintWriter(filename)) {
             printResults(out);
         }
     }
-    
-    public void printResults(String s) throws FileNotFoundException {
-        try (PrintWriter out = new PrintWriter(s)){            
-            printResults(out);
-        }
-    }
-    
-    public void printResults(PrintWriter out) {
+
+    private void printResults(PrintWriter out) {
         results.forEach((candidate, voteCount) -> out.format("%s: %d votes, %.2f%%\n", candidate, voteCount,
                 (double) voteCount * 100 / votes.size()));
         out.format("\nWinner %s", (winner == null) ? "undetermined yet (draw)" : winner);
     }
 
+    private void acceptVote(Vote vote) {
+        votes.add(vote);
+    }
 }
