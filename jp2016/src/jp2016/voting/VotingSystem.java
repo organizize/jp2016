@@ -74,9 +74,12 @@ public class VotingSystem {
     }
 
     private void printResults(PrintWriter out) {
-        results.forEach((candidate, voteCount) -> out.format("%s: %d votes, %.2f%%\n", candidate, voteCount,
-                (double) voteCount * 100 / votes.size()));
-        out.format("\nWinner %s", (winner == null) ? "undetermined yet (draw)" : winner);
+        results.entrySet().stream()
+                            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                            .forEach((entry) -> out.format("%s: %d votes, %.2f%%\n", entry.getKey(), entry.getValue(),
+                                    (double) entry.getValue() * 100 / votes.size()));
+
+        out.format("\nWinner %s\n", (winner == null) ? "undetermined yet (draw)" : winner);
     }
 
     private void acceptVote(Vote vote) {
